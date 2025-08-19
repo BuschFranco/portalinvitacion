@@ -1,0 +1,228 @@
+---
+// Componente Hero para la página principal de ozonoterapia
+---
+
+<section class="bg-gradient-to-br from-blue-50 to-green-50 py-16 px-4">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-6">
+        <span class="text-purple-600">Invitaciones</span>
+        <br>
+        <span class="text-purple-800">Digitales Elegantes</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto">
+        Creamos invitaciones digitales únicas para bodas, quinceañeras, fiestas y eventos especiales
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105">
+          Ver Portafolio
+        </button>
+        <button class="border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105">
+          Solicitar Cotización
+        </button>
+      </div>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6 scroll-animate">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">
+          ¿Por qué elegir invitaciones digitales?
+        </h2>
+        <p class="text-gray-600 text-lg leading-relaxed">
+          Las invitaciones digitales son la forma moderna, elegante y ecológica de invitar a tus seres queridos a eventos especiales. Personalizamos cada diseño según tu estilo y temática.
+        </p>
+        <p class="text-gray-600 text-lg leading-relaxed">
+          Ofrecemos diseños únicos, animaciones personalizadas y la posibilidad de incluir música, videos y confirmación de asistencia en tiempo real.
+        </p>
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+          <h3 class="text-xl font-semibold text-gray-800 mb-3">Especializados en eventos:</h3>
+          <ul class="space-y-2 text-gray-600">
+            <li class="flex items-center">
+              <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+              Bodas y Matrimonios
+            </li>
+            <li class="flex items-center">
+              <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+              Quinceañeras
+            </li>
+            <li class="flex items-center">
+              <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+              Fiestas de Cumpleaños
+            </li>
+            <li class="flex items-center">
+              <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+              Eventos Corporativos
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="relative scroll-animate">
+        <div class="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
+          <div class="text-center">
+            <div class="w-24 h-24 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full mx-auto mb-6 flex items-center justify-center">
+              <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.293l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Invitaciones Personalizadas</h3>
+            <p class="text-gray-600 mb-6">
+              Cada diseño es único y personalizado según tus gustos, colores favoritos y temática del evento. Incluimos animaciones y elementos interactivos.
+            </p>
+            <div class="grid grid-cols-2 gap-4 text-sm">
+              <div class="bg-purple-50 p-3 rounded-lg hover:bg-purple-100 transition-colors duration-300">
+                <div class="font-semibold text-purple-700">Diseños</div>
+                <div class="text-purple-600">únicos</div>
+              </div>
+              <div class="bg-purple-50 p-3 rounded-lg hover:bg-purple-100 transition-colors duration-300">
+                <div class="font-semibold text-purple-700">Entrega</div>
+                <div class="text-purple-600">rápida</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translate3d(0, -100%, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translate3d(-100%, 0, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translate3d(100%, 0, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 100%, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes bounceGentle {
+    0%, 20%, 53%, 80%, 100% {
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      transform: translate3d(0, 0, 0);
+    }
+    40%, 43% {
+      animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+      transform: translate3d(0, -15px, 0);
+    }
+    70% {
+      animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+      transform: translate3d(0, -7px, 0);
+    }
+    90% {
+      transform: translate3d(0, -2px, 0);
+    }
+  }
+
+  .animate-fade-in-down {
+    animation: fadeInDown 1s ease-out;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.8s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.8s ease-out;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 1s ease-out;
+  }
+
+  .animate-bounce-slow {
+    animation: bounceGentle 3s infinite;
+  }
+
+  .animation-delay-100 {
+    animation-delay: 0.1s;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 0.3s;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 0.4s;
+  }
+
+  .animation-delay-500 {
+    animation-delay: 0.5s;
+  }
+
+  .animation-delay-600 {
+    animation-delay: 0.6s;
+  }
+
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+  }
+
+  .scroll-animate.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  // Intersection Observer para animaciones de scroll
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate');
+      }
+    });
+  }, observerOptions);
+
+  // Observar todos los elementos con la clase scroll-animate
+  document.addEventListener('DOMContentLoaded', () => {
+    const scrollElements = document.querySelectorAll('.scroll-animate');
+    scrollElements.forEach(el => observer.observe(el));
+  });
+</script>
