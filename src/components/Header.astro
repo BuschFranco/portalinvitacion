@@ -1,4 +1,61 @@
 
 <div class="bg-black">
     <h1>Nos encargamos de tu invitación</h1>
+    <button class="darkModeBtn">
+         <i class="fa-solid fa-moon"> </i> 
+    </button>
 </div>
+
+<style>
+    .bg-black {
+        background-color: rgb(250, 114, 223);
+        color: rgb(147, 29, 197);
+        padding: 10px;
+        text-align: center;
+        font-size: 20px;
+        font-style: italic, bold;
+        display: block;
+        align-items: flex-start;
+
+    }
+    button {
+        background-color: rgba(255, 255, 255, 0.91);
+        color: rgb(147, 29, 197);
+        padding: 5px;
+        text-align: center;        
+        font-style: italic, bold;
+        border-radius: 30%;
+        height: 100%;
+        cursor: pointer;
+        margin-left: 95%;
+        align-items: center;
+    }
+   
+
+</style>
+
+<script>
+import { sequence } from "astro:middleware";
+
+
+const darkModeBtn = document.querySelector('.darkModeBtn');
+const darkModeIcon = document.querySelector('.darkModeBtn i');
+const body = document.querySelector('#body');
+const hero = document.querySelector('#hero');
+const services = document.querySelector('#services');
+const news = document.querySelector('#news');
+const benefits = document.querySelector('#benefits');
+const ids = [hero, services, news, benefits]
+
+darkModeBtn.addEventListener('click', () => {
+    darkModeIcon.classList.toggle('fa-moon');
+    darkModeIcon.classList.toggle('fa-sun');
+    ids.forEach(id => {
+        id.classList.toggle('dark');
+        
+    })
+    
+
+});
+
+</script>

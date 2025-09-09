@@ -4,12 +4,13 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
+ 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+ 		<meta name="generator" content={Astro.generator} />
 		<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 		<title>Save The Date | Diseños Únicos para Eventos</title>
 		<meta name="description" content="Creamos invitaciones digitales personalizadas para bodas, quinceañeras, cumpleaños y eventos corporativos. Diseños únicos, entrega rápida y eco-friendly.">
 	</head>
-	<body>
+	<body id="body">
 		<slot />
 	</body>
 </html>
@@ -20,5 +21,9 @@
 		margin: 0;
 		width: 100%;
 		height: 100%;
-	}
+	} .dark {
+        background-color: rgb(85, 21, 112) !important;
+        color: rgb(125, 30, 106);
+	
+    }
 </style>
