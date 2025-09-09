@@ -1,9 +1,23 @@
 
 <div class="bg-black">
-    <h1>Nos encargamos de tu invitación</h1>
-    <button class="darkModeBtn">
-         <i class="fa-solid fa-moon"> </i> 
-    </button>
+    <div class="header-container">
+        <h1 id="header-title">Nos encargamos de tu invitación</h1>
+        <div class="header-buttons">
+            <button class="darkModeBtn" aria-label="Cambiar modo oscuro/claro">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="language-menu">
+                <button class="langMenuBtn" aria-label="Menú de idiomas">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="language-dropdown">
+                    <button class="lang-option" data-lang="es">Español</button>
+                    <button class="lang-option" data-lang="en">English</button>
+                    <button class="lang-option" data-lang="pt">Português</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <style>
@@ -11,51 +25,361 @@
         background-color: rgb(250, 114, 223);
         color: rgb(147, 29, 197);
         padding: 10px;
-        text-align: center;
         font-size: 20px;
         font-style: italic, bold;
-        display: block;
-        align-items: flex-start;
-
     }
+
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .header-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
     button {
         background-color: rgba(255, 255, 255, 0.91);
         color: rgb(147, 29, 197);
-        padding: 5px;
+        padding: 8px;
         text-align: center;        
         font-style: italic, bold;
-        border-radius: 30%;
-        height: 100%;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
         cursor: pointer;
-        margin-left: 95%;
+        display: flex;
         align-items: center;
+        justify-content: center;
+        border: none;
+        transition: transform 0.3s ease, background-color 0.3s ease;
     }
-   
 
+    button:hover {
+        transform: scale(1.1);
+    }
+
+    .language-menu {
+        position: relative;
+    }
+
+    .language-dropdown {
+        position: absolute;
+        top: 45px;
+        right: 0;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 8px 0;
+        min-width: 150px;
+        z-index: 100;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    }
+
+    .language-dropdown.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .lang-option {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 8px 16px;
+        background: none;
+        border: none;
+        border-radius: 0;
+        color: rgb(147, 29, 197);
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    .lang-option:hover {
+        background-color: rgba(250, 114, 223, 0.1);
+    }
+
+    /* Animación para el botón de modo oscuro */
+    .darkModeBtn i {
+        transition: transform 0.5s ease;
+    }
+
+    .darkModeBtn:active i {
+        transform: rotate(360deg);
+    }
+
+    /* Animación para el botón de menú */
+    .langMenuBtn i {
+        transition: transform 0.3s ease;
+    }
+
+    .langMenuBtn.active i {
+        transform: rotate(90deg);
+    }
 </style>
 
 <script>
-import { sequence } from "astro:middleware";
+// Traducciones
+const translations = {
+    es: {
+        headerTitle: "Nos encargamos de tu invitación",
+        heroTitle: "Save The Date",
+        heroSubtitle: "Creamos invitaciones digitales únicas para bodas, quinceañeras, fiestas y eventos especiales",
+        portfolioBtn: "Ver Portafolio",
+        quoteBtn: "Solicitar Cotización",
+        whyDigitalTitle: "¿Por qué elegir invitaciones digitales?",
+        whyDigitalText1: "Las invitaciones digitales son la forma moderna, elegante y ecológica de invitar a tus seres queridos a eventos especiales. Personalizamos cada diseño según tu estilo y temática.",
+        whyDigitalText2: "Ofrecemos diseños únicos, animaciones personalizadas y la posibilidad de incluir música, videos y confirmación de asistencia en tiempo real.",
+        specializedTitle: "Especializados en eventos:",
+        wedding: "Bodas y Matrimonios",
+        sweet15: "Quinceañeras",
+        birthday: "Fiestas de Cumpleaños",
+        servicesTitle: "Nuestros Servicios",
+        servicesSubtitle: "Ofrecemos servicios completos de diseño de invitaciones digitales para hacer de tu evento algo memorable",
+        servicesText: "Celebridades, influencers y organizadores de eventos confían en nuestros diseños para crear invitaciones memorables y únicas.",
+        weddingInvTitle: "Invitaciones de Bodas",
+        weddingInvText: "Diseños elegantes y románticos para el día más especial. Incluimos animaciones, música y confirmación de asistencia digital.",
+        viewExamples: "Ver ejemplos →",
+        sweet15InvTitle: "Quinceañeras",
+        sweet15InvText: "Celebra los 15 años con invitaciones mágicas y llenas de color. Diseños únicos que reflejan la personalidad de la quinceañera.",
+        benefitsTitle: "Beneficios de las Invitaciones Digitales",
+        benefitsSubtitle: "Descubre por qué las invitaciones digitales son la mejor opción para tus eventos especiales",
+        ecofriendlyTitle: "Ecológico y Sostenible",
+        ecofriendlyText: "Sin papel, sin desperdicio. Contribuye al cuidado del medio ambiente con invitaciones 100% digitales.",
+        instantDeliveryTitle: "Entrega Instantánea",
+        instantDeliveryText: "Envía tus invitaciones al instante por WhatsApp, email o redes sociales. Sin esperas ni retrasos.",
+        newsTitle: "Novedades",
+        newsSubtitle: "Últimas tendencias y consejos - Mantente al día con las mejores prácticas en diseño de invitaciones digitales",
+        article1Title: "¿Cómo elegir el diseño perfecto?",
+        article1Text: "El 85% de los invitados forman su primera impresión del evento a través de la invitación. Descubre cómo crear diseños que reflejen la personalidad de tu celebración.",
+        recentArticle: "Artículo reciente",
+        readMore: "Leer más →",
+        article2Title: "Tendencias en invitaciones 2024",
+        article2Text: "Descubre las últimas tendencias en invitaciones digitales para 2024. Desde elementos interactivos hasta experiencias personalizadas, mantente a la vanguardia con diseños innovadores."
+    },
+    en: {
+        headerTitle: "We take care of your invitation",
+        heroTitle: "Save The Date",
+        heroSubtitle: "We create unique digital invitations for weddings, sweet fifteens, parties and special events",
+        portfolioBtn: "View Portfolio",
+        quoteBtn: "Request Quote",
+        whyDigitalTitle: "Why choose digital invitations?",
+        whyDigitalText1: "Digital invitations are the modern, elegant and eco-friendly way to invite your loved ones to special events. We customize each design according to your style and theme.",
+        whyDigitalText2: "We offer unique designs, custom animations and the ability to include music, videos and real-time attendance confirmation.",
+        specializedTitle: "Specialized in events:",
+        wedding: "Weddings and Marriages",
+        sweet15: "Sweet Fifteens",
+        birthday: "Birthday Parties",
+        servicesTitle: "Our Services",
+        servicesSubtitle: "We offer complete digital invitation design services to make your event memorable",
+        servicesText: "Celebrities, influencers and event organizers trust our designs to create memorable and unique invitations.",
+        weddingInvTitle: "Wedding Invitations",
+        weddingInvText: "Elegant and romantic designs for the most special day. We include animations, music and digital attendance confirmation.",
+        viewExamples: "View examples →",
+        sweet15InvTitle: "Sweet Fifteens",
+        sweet15InvText: "Celebrate the 15th birthday with magical and colorful invitations. Unique designs that reflect the personality of the birthday girl.",
+        benefitsTitle: "Benefits of Digital Invitations",
+        benefitsSubtitle: "Discover why digital invitations are the best option for your special events",
+        ecofriendlyTitle: "Eco-friendly and Sustainable",
+        ecofriendlyText: "No paper, no waste. Contribute to caring for the environment with 100% digital invitations.",
+        instantDeliveryTitle: "Instant Delivery",
+        instantDeliveryText: "Send your invitations instantly via WhatsApp, email or social media. No waiting or delays.",
+        newsTitle: "News",
+        newsSubtitle: "Latest trends and tips - Stay up to date with best practices in digital invitation design",
+        article1Title: "How to choose the perfect design?",
+        article1Text: "85% of guests form their first impression of the event through the invitation. Discover how to create designs that reflect the personality of your celebration.",
+        recentArticle: "Recent article",
+        readMore: "Read more →",
+        article2Title: "Invitation trends 2024",
+        article2Text: "Discover the latest trends in digital invitations for 2024. From interactive elements to personalized experiences, stay ahead with innovative designs."
+    },
+    pt: {
+        headerTitle: "Cuidamos do seu convite",
+        heroTitle: "Save The Date",
+        heroSubtitle: "Criamos convites digitais únicos para casamentos, festas de quinze anos, aniversários e eventos especiais",
+        portfolioBtn: "Ver Portfólio",
+        quoteBtn: "Solicitar Orçamento",
+        whyDigitalTitle: "Por que escolher convites digitais?",
+        whyDigitalText1: "Os convites digitais são a forma moderna, elegante e ecológica de convidar seus entes queridos para eventos especiais. Personalizamos cada design de acordo com seu estilo e tema.",
+        whyDigitalText2: "Oferecemos designs únicos, animações personalizadas e a possibilidade de incluir música, vídeos e confirmação de presença em tempo real.",
+        specializedTitle: "Especializados em eventos:",
+        wedding: "Casamentos e Matrimônios",
+        sweet15: "Festas de Quinze Anos",
+        birthday: "Festas de Aniversário",
+        servicesTitle: "Nossos Serviços",
+        servicesSubtitle: "Oferecemos serviços completos de design de convites digitais para tornar seu evento memorável",
+        servicesText: "Celebridades, influenciadores e organizadores de eventos confiam em nossos designs para criar convites memoráveis e únicos.",
+        weddingInvTitle: "Convites de Casamento",
+        weddingInvText: "Designs elegantes e românticos para o dia mais especial. Incluímos animações, música e confirmação de presença digital.",
+        viewExamples: "Ver exemplos →",
+        sweet15InvTitle: "Festas de Quinze Anos",
+        sweet15InvText: "Celebre os 15 anos com convites mágicos e cheios de cor. Designs únicos que refletem a personalidade da aniversariante.",
+        benefitsTitle: "Benefícios dos Convites Digitais",
+        benefitsSubtitle: "Descubra por que os convites digitais são a melhor opção para seus eventos especiais",
+        ecofriendlyTitle: "Ecológico e Sustentável",
+        ecofriendlyText: "Sem papel, sem desperdício. Contribua para o cuidado com o meio ambiente com convites 100% digitais.",
+        instantDeliveryTitle: "Entrega Instantânea",
+        instantDeliveryText: "Envie seus convites instantaneamente via WhatsApp, email ou redes sociais. Sem esperas ou atrasos.",
+        newsTitle: "Novidades",
+        newsSubtitle: "Últimas tendências e dicas - Mantenha-se atualizado com as melhores práticas em design de convites digitais",
+        article1Title: "Como escolher o design perfeito?",
+        article1Text: "85% dos convidados formam sua primeira impressão do evento através do convite. Descubra como criar designs que refletem a personalidade da sua celebração.",
+        recentArticle: "Artigo recente",
+        readMore: "Ler mais →",
+        article2Title: "Tendências em convites 2024",
+        article2Text: "Descubra as últimas tendências em convites digitais para 2024. De elementos interativos a experiências personalizadas, mantenha-se à frente com designs inovadores."
+    }
+};
 
-
+// Elementos DOM
 const darkModeBtn = document.querySelector('.darkModeBtn');
 const darkModeIcon = document.querySelector('.darkModeBtn i');
-const body = document.querySelector('#body');
+const langMenuBtn = document.querySelector('.langMenuBtn');
+const langDropdown = document.querySelector('.language-dropdown');
+const langOptions = document.querySelectorAll('.lang-option');
+const html = document.documentElement;
+const body = document.body;
 const hero = document.querySelector('#hero');
 const services = document.querySelector('#services');
 const news = document.querySelector('#news');
 const benefits = document.querySelector('#benefits');
-const ids = [hero, services, news, benefits]
+const headerTitle = document.querySelector('#header-title');
 
+// Elementos que necesitan modo oscuro
+const darkModeElements = [html];
+
+// Verificar si hay una preferencia de modo oscuro guardada
+const isDarkMode = localStorage.getItem('darkMode') === 'true';
+if (isDarkMode) {
+    darkModeIcon.classList.remove('fa-moon');
+    darkModeIcon.classList.add('fa-sun');
+    document.documentElement.classList.add('dark');
+}
+
+// Verificar si hay una preferencia de idioma guardada
+let currentLang = localStorage.getItem('language') || 'es';
+
+// Función para actualizar textos según el idioma
+function updateTexts(lang) {
+    // Actualizar el título del encabezado
+    if (headerTitle) headerTitle.textContent = translations[lang].headerTitle;
+    
+    // Actualizar otros textos en la página
+    const elements = {
+        // Hero section
+        '.text-purple-800': translations[lang].heroTitle,
+        '#hero .text-xl.md\\:text-2xl': translations[lang].heroSubtitle,
+        '#hero .bg-purple-600': translations[lang].portfolioBtn,
+        '#hero .border-2.border-purple-600': translations[lang].quoteBtn,
+        '#hero h2.text-3xl': translations[lang].whyDigitalTitle,
+        '#hero p.text-gray-600:nth-of-type(1)': translations[lang].whyDigitalText1,
+        '#hero p.text-gray-600:nth-of-type(2)': translations[lang].whyDigitalText2,
+        '#hero h3.text-xl': translations[lang].specializedTitle,
+        '#hero li:nth-of-type(1)': translations[lang].wedding,
+        '#hero li:nth-of-type(2)': translations[lang].sweet15,
+        '#hero li:nth-of-type(3)': translations[lang].birthday,
+        
+        // Services section
+        '#services h2.text-3xl': translations[lang].servicesTitle,
+        '#services p.text-xl:nth-of-type(1)': translations[lang].servicesSubtitle,
+        '#services p.text-xl:nth-of-type(2)': translations[lang].servicesText,
+        '#services h3.text-xl:nth-of-type(1)': translations[lang].weddingInvTitle,
+        '#services .max-w-sm:nth-of-type(1) p': translations[lang].weddingInvText,
+        '#services .max-w-sm:nth-of-type(1) button': translations[lang].viewExamples,
+        '#services h3.text-xl:nth-of-type(2)': translations[lang].sweet15InvTitle,
+        '#services .max-w-sm:nth-of-type(2) p': translations[lang].sweet15InvText,
+        '#services .max-w-sm:nth-of-type(2) button': translations[lang].viewExamples,
+        
+        // Benefits section
+        '#benefits h2.text-3xl': translations[lang].benefitsTitle,
+        '#benefits p.text-xl': translations[lang].benefitsSubtitle,
+        '#benefits h3.text-lg:nth-of-type(1)': translations[lang].ecofriendlyTitle,
+        '#benefits .bg-white:nth-of-type(1) p': translations[lang].ecofriendlyText,
+        '#benefits h3.text-lg:nth-of-type(2)': translations[lang].instantDeliveryTitle,
+        '#benefits .bg-white:nth-of-type(2) p': translations[lang].instantDeliveryText,
+        
+        // News section
+        '#news h2.text-3xl': translations[lang].newsTitle,
+        '#news p.text-xl': translations[lang].newsSubtitle,
+        '#news h3.text-xl:nth-of-type(1)': translations[lang].article1Title,
+        '#news article:nth-of-type(1) p.text-gray-600': translations[lang].article1Text,
+        '#news article:nth-of-type(1) span.text-xs': translations[lang].recentArticle,
+        '#news article:nth-of-type(1) button': translations[lang].readMore,
+        '#news h3.text-xl:nth-of-type(2)': translations[lang].article2Title,
+        '#news article:nth-of-type(2) p.text-gray-600': translations[lang].article2Text,
+        '#news article:nth-of-type(2) span.text-xs': translations[lang].recentArticle,
+        '#news article:nth-of-type(2) button': translations[lang].readMore
+    };
+    
+    // Actualizar cada elemento si existe
+for (const [selector, text] of Object.entries(elements)) {
+    try {
+        const elements = document.querySelectorAll(selector);
+        if (elements.length === 0) {
+            console.warn(`No se encontraron elementos para el selector: ${selector}`);
+        }
+        elements.forEach(element => {
+            if (element) element.textContent = text;
+        });
+    } catch (error) {
+        console.error(`Error al actualizar el selector ${selector}:`, error);
+    }
+}
+}
+
+// Aplicar el idioma actual al cargar la página
+updateTexts(currentLang);
+
+// Evento para cambiar el modo oscuro
 darkModeBtn.addEventListener('click', () => {
+    // Cambiar el icono
     darkModeIcon.classList.toggle('fa-moon');
     darkModeIcon.classList.toggle('fa-sun');
-    ids.forEach(id => {
-        id.classList.toggle('dark');
-        
-    })
     
-
+    // Aplicar modo oscuro directamente al elemento html
+    document.documentElement.classList.toggle('dark');
+    
+    // Forzar repintado para asegurar que los estilos se apliquen
+    document.body.style.display = 'none';
+    document.body.offsetHeight; // Forzar repintado
+    document.body.style.display = '';
+    
+    // Guardar preferencia
+    const isDark = darkModeIcon.classList.contains('fa-sun');
+    localStorage.setItem('darkMode', isDark);
 });
 
+// Evento para mostrar/ocultar el menú de idiomas
+langMenuBtn.addEventListener('click', () => {
+    langDropdown.classList.toggle('show');
+    langMenuBtn.classList.toggle('active');
+});
+
+// Cerrar el menú de idiomas al hacer clic fuera de él
+document.addEventListener('click', (e) => {
+    if (!langMenuBtn.contains(e.target) && !langDropdown.contains(e.target)) {
+        langDropdown.classList.remove('show');
+        langMenuBtn.classList.remove('active');
+    }
+});
+
+// Eventos para cambiar el idioma
+langOptions.forEach(option => {
+    option.addEventListener('click', () => {
+        const lang = option.dataset.lang;
+        currentLang = lang;
+        updateTexts(lang);
+        localStorage.setItem('language', lang);
+        langDropdown.classList.remove('show');
+        langMenuBtn.classList.remove('active');
+    });
+});
 </script>

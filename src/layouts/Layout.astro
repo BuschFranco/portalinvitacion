@@ -15,15 +15,109 @@
 	</body>
 </html>
 
-<style>
+<style is:global>
+	/* 
+	 * GUÍA DE EDICIÓN DE COLORES EN MODO OSCURO
+	 * ----------------------------------------
+	 * Para editar los colores de cada sección en modo oscuro, busca las siguientes secciones:
+	 * 
+	 * 1. Fondo principal: html.dark, html.dark body - líneas 26-29
+	 * 2. Secciones generales: html.dark section - líneas 30-34
+	 * 3. Títulos: html.dark h1, html.dark h2, html.dark h3, html.dark h4 - líneas 35-37
+	 * 4. Párrafos: html.dark p - líneas 38-40
+	 * 5. Fondos blancos: html.dark .bg-white - líneas 41-43
+	 * 6. Botones: html.dark button - líneas 44-47
+	 * 7. Fondos negros: html.dark .bg-black - líneas 48-51
+	 * 8. Textos y bordes de colores: líneas 59-74
+	 * 9. Gradientes y fondos: líneas 77-92
+	 * 10. Elementos con animaciones: líneas 95-107
+	 */
 	html,
 	body {
 		margin: 0;
 		width: 100%;
 		height: 100%;
-	} .dark {
-        background-color: rgb(85, 21, 112) !important;
-        color: rgb(125, 30, 106);
-	
+		transition: background-color 0.5s ease, color 0.5s ease;
+	} 
+	html.dark,
+	html.dark body {
+        background-color: rgb(18, 18, 28) !important;
+        color: rgb(220, 220, 235) !important;
     }
+	html.dark section {
+		background-color: rgb(28, 28, 38) !important;
+		color: rgb(220, 220, 235) !important;
+		transition: background-color 0.5s ease, color 0.5s ease;
+	}
+	html.dark h1, html.dark h2, html.dark h3, html.dark h4 {
+		color: rgb(250, 250, 255) !important;
+	}
+	html.dark p {
+		color: rgb(200, 200, 220) !important;
+	}
+	html.dark .bg-white {
+		background-color: rgb(35, 35, 45) !important;
+	}
+	html.dark button {
+		background-color: rgb(55, 55, 65) !important;
+		color: rgb(220, 220, 235) !important;
+	}
+	html.dark .bg-black {
+		background-color: rgb(20, 20, 30) !important;
+		color: rgb(220, 220, 235) !important;
+	}
+
+	/* Asegurar que todos los elementos hereden correctamente los colores del modo oscuro */
+	html.dark * {
+		transition: background-color 0.5s ease, color 0.5s ease;
+	}
+
+	/* Estilos específicos para elementos con clases de Tailwind */
+	html.dark .text-purple-800 {
+		color: rgb(180, 160, 255) !important;
+	}
+
+	html.dark .text-gray-600 {
+		color: rgb(200, 200, 220) !important;
+	}
+
+	html.dark .border-purple-600 {
+		border-color: rgb(180, 160, 255) !important;
+	}
+
+	html.dark .bg-purple-600 {
+		background-color: rgb(100, 80, 170) !important;
+		color: rgb(220, 220, 235) !important;
+	}
+
+	/* Estilos para elementos con gradientes */
+	html.dark .bg-gradient-to-br {
+		background: linear-gradient(to bottom right, rgb(40, 40, 50), rgb(30, 30, 40)) !important;
+	}
+
+	html.dark .from-purple-50.to-purple-100,
+	html.dark .from-pink-50.to-purple-100,
+	html.dark .from-violet-50.to-purple-100 {
+		background: linear-gradient(to bottom right, rgb(45, 45, 55), rgb(40, 35, 50)) !important;
+	}
+
+	html.dark .from-blue-50.to-green-50 {
+		background: linear-gradient(to bottom right, rgb(35, 40, 55), rgb(35, 45, 50)) !important;
+	}
+
+	html.dark .from-purple-50.to-pink-50 {
+		background: linear-gradient(to bottom right, rgb(40, 35, 50), rgb(45, 35, 45)) !important;
+	}
+
+	/* Estilos para elementos con animaciones */
+	html.dark .scroll-animate {
+		transition: opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.5s ease !important;
+	}
+
+	html.dark article,
+	html.dark .shadow-lg,
+	html.dark .shadow-xl {
+		background-color: rgb(35, 35, 45) !important;
+		border-color: rgb(45, 45, 55) !important;
+	}
 </style>

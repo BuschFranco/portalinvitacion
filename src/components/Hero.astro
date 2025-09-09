@@ -2,7 +2,7 @@
 // Componente Hero para la página principal de ozonoterapia
 ---
 
-<section id="hero" class="bg-gradient-to-br from-blue-50 to-green-50 py-16 px-4">
+<section id="hero" class="bg-gradient-to-br from-blue-50 to-green-50 py-16 px-4 transition-all duration-500">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-12">
       <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-6">
@@ -201,6 +201,11 @@
     opacity: 1;
     transform: translateY(0);
   }
+  
+  /* Estilos específicos para modo oscuro */
+  .dark-mode-animated {
+    transition: background-color 0.5s ease, color 0.5s ease, transform 0.6s ease, opacity 0.6s ease, box-shadow 0.5s ease !important;
+  }
 </style>
 
 <script>
@@ -222,5 +227,31 @@
   document.addEventListener('DOMContentLoaded', () => {
     const scrollElements = document.querySelectorAll('.scroll-animate');
     scrollElements.forEach(el => observer.observe(el));
+    
+    // Verificar si estamos en modo oscuro y aplicar clases adicionales
+    const isDarkMode = document.documentElement.classList.contains('dark');
+    if (isDarkMode) {
+      document.querySelectorAll('.bg-white, .shadow-lg, .shadow-xl').forEach(el => {
+        el.classList.add('dark-mode-animated');
+      });
+    }
   });
+  
+  // Escuchar cambios en el modo oscuro
+  const darkModeObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === 'class') {
+        const isDarkMode = document.documentElement.classList.contains('dark');
+        document.querySelectorAll('.bg-white, .shadow-lg, .shadow-xl').forEach(el => {
+          if (isDarkMode) {
+            el.classList.add('dark-mode-animated');
+          } else {
+            el.classList.remove('dark-mode-animated');
+          }
+        });
+      }
+    });
+  });
+  
+  darkModeObserver.observe(document.documentElement, { attributes: true });
 </script>
