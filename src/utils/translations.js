@@ -1,166 +1,5 @@
-
-<div>
-    <div class="header-container">
-        <div class="header-buttons">
-            <button class="darkModeBtn" aria-label="Cambiar modo oscuro/claro">
-                <i class="fa-solid fa-moon"></i>
-            </button>
-            <div class="language-menu">
-                <button class="langMenuBtn" aria-label="Menú de idiomas">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-                <div class="language-dropdown">
-                    <button class="lang-option" data-lang="es">Español</button>
-                    <button class="lang-option" data-lang="en">English</button>
-                    <button class="lang-option" data-lang="pt">Português</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<style>
-    .bg-black {
-        background-color: rgb(250, 114, 223);
-        color: rgb(147, 29, 197);
-        padding: 10px;
-        font-size: 20px;
-        font-style: italic, bold;
-    }
-
-    .header-container {
-        display: flex;
-        justify-content: end;
-        align-items: center;
-        padding: 1rem;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .header-buttons {
-        display: flex;
-        gap: 10px;
-    }
-
-    button {
-        background-color: rgba(255, 255, 255, 0.91);
-        color: rgb(147, 29, 197);
-        padding: 8px;
-        text-align: center;        
-        font-style: italic, bold;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: none;
-        transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-
-    button:hover {
-        transform: scale(1.1);
-    }
-
-    .language-menu {
-        position: relative;
-    }
-
-    .language-dropdown {
-        position: absolute;
-        top: 45px;
-        right: 0;
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding: 8px 0;
-        min-width: 150px;
-        z-index: 100;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-10px);
-        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-    }
-
-    .language-dropdown.show {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-    }
-
-    .lang-option {
-        display: block;
-        width: 100%;
-        text-align: left;
-        padding: 8px 16px;
-        background: none;
-        border: none;
-        border-radius: 0;
-        color: rgb(147, 29, 197);
-        font-size: 14px;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
-    }
-
-    .lang-option:hover {
-        background-color: rgba(250, 114, 223, 0.1);
-    }
-
-    .darkModeBtn{
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.623);
-    }
-    /* Animación para el botón de modo oscuro */
-    .darkModeBtn i {
-        transition: transform 0.5s ease;
-    }
-
-    .darkModeBtn:active i {
-        transform: rotate(360deg);
-    }
-
-    .langMenuBtn{
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.623);
-    }
-    /* Animación para el botón de menú */
-    .langMenuBtn i {
-        transition: transform 0.3s ease;
-    }
-
-    .langMenuBtn.active i {
-        transform: rotate(90deg);
-    }
-</style>
-
-<script>
-
-// Elementos DOM
-const darkModeBtn = document.querySelector('.darkModeBtn');
-const darkModeIcon = document.querySelector('.darkModeBtn i');
-const langMenuBtn = document.querySelector('.langMenuBtn');
-const langDropdown = document.querySelector('.language-dropdown');
-const langOptions = document.querySelectorAll('.lang-option');
-const html = document.documentElement;
-const body = document.body;
-const hero = document.querySelector('#hero');
-const services = document.querySelector('#services');
-const news = document.querySelector('#news');
-const benefits = document.querySelector('#benefits');
-const headerTitle = document.querySelector('#header-title');
-
-// Elementos que necesitan modo oscuro
-const darkModeElements = [html];
-
-// Verificar si hay una preferencia de modo oscuro guardada
-const isDarkMode = localStorage.getItem('darkMode') === 'true';
-if (isDarkMode) {
-    darkModeIcon.classList.remove('fa-moon');
-    darkModeIcon.classList.add('fa-sun');
-    document.documentElement.classList.add('dark');
-}
-
-// Traducciones
-const translations = {
+// Traducciones para la aplicación
+export const translations = {
     es: {
         headerTitle: "Nos encargamos de tu invitación",
         heroTitle: "Save The Date",
@@ -219,17 +58,17 @@ const translations = {
         weddingInvText: "Elegant and romantic designs for the most special day. We include animations, music and digital attendance confirmation.",
         viewExamples: "View examples →",
         sweet15InvTitle: "Sweet Fifteens",
-        sweet15InvText: "Celebrate the 15th birthday with magical and colorful invitations. Unique designs that reflect the quinceañera's personality.",
+        sweet15InvText: "Celebrate the 15th birthday with magical and colorful invitations. Unique designs that reflect the personality of the birthday girl.",
         benefitsTitle: "Benefits of Digital Invitations",
         benefitsSubtitle: "Discover why digital invitations are the best option for your special events",
         ecofriendlyTitle: "Eco-friendly and Sustainable",
-        ecofriendlyText: "No paper, no waste. Contribute to environmental care with 100% digital invitations.",
+        ecofriendlyText: "No paper, no waste. Contribute to caring for the environment with 100% digital invitations.",
         instantDeliveryTitle: "Instant Delivery",
         instantDeliveryText: "Send your invitations instantly via WhatsApp, email or social media. No waiting or delays.",
         newsTitle: "News",
-        newsSubtitle: "Latest trends and tips - Stay up to date with the best practices in digital invitation design",
+        newsSubtitle: "Latest trends and tips - Stay up to date with best practices in digital invitation design",
         article1Title: "How to choose the perfect design?",
-        article1Text: "85% of guests form their first impression of the event through the invitation. Discover how to create designs that reflect your celebration's personality.",
+        article1Text: "85% of guests form their first impression of the event through the invitation. Discover how to create designs that reflect the personality of your celebration.",
         recentArticle: "Recent article",
         readMore: "Read more →",
         article2Title: "Invitation trends 2024",
@@ -238,15 +77,15 @@ const translations = {
     pt: {
         headerTitle: "Cuidamos do seu convite",
         heroTitle: "Save The Date",
-        heroSubtitle: "Criamos convites digitais únicos para casamentos, debutantes, festas e eventos especiais",
+        heroSubtitle: "Criamos convites digitais únicos para casamentos, festas de quinze anos, aniversários e eventos especiais",
         portfolioBtn: "Ver Portfólio",
         quoteBtn: "Solicitar Orçamento",
         whyDigitalTitle: "Por que escolher convites digitais?",
-        whyDigitalText1: "Os convites digitais são a forma moderna, elegante e ecológica de convidar seus entes queridos para eventos especiais. Personalizamos cada design de acordo com seu estilo e temática.",
+        whyDigitalText1: "Os convites digitais são a forma moderna, elegante e ecológica de convidar seus entes queridos para eventos especiais. Personalizamos cada design de acordo com seu estilo e tema.",
         whyDigitalText2: "Oferecemos designs únicos, animações personalizadas e a possibilidade de incluir música, vídeos e confirmação de presença em tempo real.",
         specializedTitle: "Especializados em eventos:",
         wedding: "Casamentos e Matrimônios",
-        sweet15: "Debutantes",
+        sweet15: "Festas de Quinze Anos",
         birthday: "Festas de Aniversário",
         corporate: "Eventos Corporativos",
         servicesTitle: "Nossos Serviços",
@@ -255,52 +94,55 @@ const translations = {
         weddingInvTitle: "Convites de Casamento",
         weddingInvText: "Designs elegantes e românticos para o dia mais especial. Incluímos animações, música e confirmação de presença digital.",
         viewExamples: "Ver exemplos →",
-        sweet15InvTitle: "Debutantes",
-        sweet15InvText: "Celebre os 15 anos com convites mágicos e cheios de cor. Designs únicos que refletem a personalidade da debutante.",
+        sweet15InvTitle: "Festas de Quinze Anos",
+        sweet15InvText: "Celebre os 15 anos com convites mágicos e cheios de cor. Designs únicos que refletem a personalidade da aniversariante.",
         benefitsTitle: "Benefícios dos Convites Digitais",
         benefitsSubtitle: "Descubra por que os convites digitais são a melhor opção para seus eventos especiais",
         ecofriendlyTitle: "Ecológico e Sustentável",
-        ecofriendlyText: "Sem papel, sem desperdício. Contribua para o cuidado do meio ambiente com convites 100% digitais.",
+        ecofriendlyText: "Sem papel, sem desperdício. Contribua para o cuidado com o meio ambiente com convites 100% digitais.",
         instantDeliveryTitle: "Entrega Instantânea",
-        instantDeliveryText: "Envie seus convites instantaneamente pelo WhatsApp, email ou redes sociais. Sem esperas ou atrasos.",
+        instantDeliveryText: "Envie seus convites instantaneamente via WhatsApp, email ou redes sociais. Sem esperas ou atrasos.",
         newsTitle: "Novidades",
         newsSubtitle: "Últimas tendências e dicas - Mantenha-se atualizado com as melhores práticas em design de convites digitais",
         article1Title: "Como escolher o design perfeito?",
-        article1Text: "85% dos convidados formam sua primeira impressão do evento através do convite. Descubra como criar designs que reflitam a personalidade da sua celebração.",
+        article1Text: "85% dos convidados formam sua primeira impressão do evento através do convite. Descubra como criar designs que refletem a personalidade da sua celebração.",
         recentArticle: "Artigo recente",
         readMore: "Ler mais →",
         article2Title: "Tendências em convites 2024",
-        article2Text: "Descubra as últimas tendências em convites digitais para 2024. Desde elementos interativos até experiências personalizadas, mantenha-se na vanguarda com designs inovadores."
+        article2Text: "Descubra as últimas tendências em convites digitais para 2024. De elementos interativos a experiências personalizadas, mantenha-se à frente com designs inovadores."
     }
 };
 
-// Función para actualizar texto preservando HTML
-function updateTextPreservingHTML(element, newText) {
-    if (!element) return;
-    
-    // Si el elemento tiene hijos (como spans), preservar la estructura
-    const children = element.children;
-    if (children.length > 0) {
-        // Buscar el nodo de texto que viene después del span
-        const textNodes = Array.from(element.childNodes).filter(node => node.nodeType === Node.TEXT_NODE);
-        
-        // Limpiar todos los nodos de texto existentes
-        textNodes.forEach(node => node.remove());
-        
-        // Agregar el nuevo texto después del span (punto)
-        element.appendChild(document.createTextNode(newText));
-    } else {
-        // Si no tiene hijos, actualizar normalmente
-        element.textContent = newText;
-    }
+// Función para actualizar textos preservando elementos HTML como spans
+function updateTextPreservingHTML(selector, newText) {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach(element => {
+        if (element) {
+            // Para elementos li, preservar los spans y solo actualizar el texto
+            if (element.tagName === 'LI') {
+                const span = element.querySelector('span');
+                if (span) {
+                    // Mantener el span y actualizar solo el texto
+                    element.innerHTML = '';
+                    element.appendChild(span);
+                    element.appendChild(document.createTextNode(newText));
+                } else {
+                    element.textContent = newText;
+                }
+            } else {
+                element.textContent = newText;
+            }
+        }
+    });
 }
 
-// Función para actualizar textos según el idioma
-function updateTexts(lang) {
+// Función principal para actualizar textos según el idioma
+export function updateTexts(lang) {
     // Actualizar el título del encabezado
+    const headerTitle = document.querySelector('#header-title');
     if (headerTitle) headerTitle.textContent = translations[lang].headerTitle;
     
-    // Actualizar otros textos en la página
+    // Actualizar otros textos en la página usando la función que preserva HTML
     const elements = {
         // Hero section
         '.text-purple-800': translations[lang].heroTitle,
@@ -344,7 +186,7 @@ function updateTexts(lang) {
         '#news article:nth-of-type(2) button': translations[lang].readMore
     };
     
-    // Actualizar cada elemento si existe
+    // Actualizar elementos regulares
     for (const [selector, text] of Object.entries(elements)) {
         try {
             const elements = document.querySelectorAll(selector);
@@ -359,73 +201,36 @@ function updateTexts(lang) {
         }
     }
     
-    // Actualizar elementos de lista preservando los spans
-    const listItems = [
-        { selector: '#hero li:nth-of-type(1)', text: translations[lang].wedding },
-        { selector: '#hero li:nth-of-type(2)', text: translations[lang].sweet15 },
-        { selector: '#hero li:nth-of-type(3)', text: translations[lang].birthday },
-        { selector: '#hero li:nth-of-type(4)', text: translations[lang].corporate }
-    ];
+    // Actualizar elementos li preservando los spans (puntos)
+    const listItems = {
+        '#hero .event-list li:nth-of-type(1)': translations[lang].wedding,
+        '#hero .event-list li:nth-of-type(2)': translations[lang].sweet15,
+        '#hero .event-list li:nth-of-type(3)': translations[lang].birthday,
+        '#hero .event-list li:nth-of-type(4)': translations[lang].corporate
+    };
     
-    listItems.forEach(({ selector, text }) => {
-        const element = document.querySelector(selector);
-        if (element) {
-            updateTextPreservingHTML(element, text);
+    for (const [selector, text] of Object.entries(listItems)) {
+        try {
+            updateTextPreservingHTML(selector, text);
+        } catch (error) {
+            console.error(`Error al actualizar el elemento li ${selector}:`, error);
         }
-    });
+    }
+}
+
+// Función para inicializar las traducciones
+export function initTranslations() {
+    // Verificar si hay una preferencia de idioma guardada
+    let currentLang = localStorage.getItem('language') || 'es';
+    
+    // Aplicar el idioma actual al cargar la página
+    updateTexts(currentLang);
+    
+    return currentLang;
 }
 
 // Función para cambiar idioma
-function changeLanguage(lang) {
+export function changeLanguage(lang) {
     updateTexts(lang);
     localStorage.setItem('language', lang);
 }
-
-// Inicializar traducciones
-let currentLang = localStorage.getItem('language') || 'es';
-updateTexts(currentLang);
-
-// Evento para cambiar el modo oscuro
-darkModeBtn.addEventListener('click', () => {
-    // Cambiar el icono
-    darkModeIcon.classList.toggle('fa-moon');
-    darkModeIcon.classList.toggle('fa-sun');
-    
-    // Aplicar modo oscuro directamente al elemento html
-    document.documentElement.classList.toggle('dark');
-    
-    // Forzar repintado para asegurar que los estilos se apliquen
-    document.body.style.display = 'none';
-    document.body.offsetHeight; // Forzar repintado
-    document.body.style.display = '';
-    
-    // Guardar preferencia
-    const isDark = darkModeIcon.classList.contains('fa-sun');
-    localStorage.setItem('darkMode', isDark);
-});
-
-// Evento para mostrar/ocultar el menú de idiomas
-langMenuBtn.addEventListener('click', () => {
-    langDropdown.classList.toggle('show');
-    langMenuBtn.classList.toggle('active');
-});
-
-// Cerrar el menú de idiomas al hacer clic fuera de él
-document.addEventListener('click', (e) => {
-    if (!langMenuBtn.contains(e.target) && !langDropdown.contains(e.target)) {
-        langDropdown.classList.remove('show');
-        langMenuBtn.classList.remove('active');
-    }
-});
-
-// Eventos para cambiar el idioma
-langOptions.forEach(option => {
-    option.addEventListener('click', () => {
-        const lang = option.dataset.lang;
-        currentLang = lang;
-        changeLanguage(lang);
-        langDropdown.classList.remove('show');
-        langMenuBtn.classList.remove('active');
-    });
-});
-</script>
