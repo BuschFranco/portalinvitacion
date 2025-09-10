@@ -22,7 +22,7 @@
   <div class="max-w-6xl mx-auto relative z-10">
     <div id="mainContent" class="text-center mb-12">
       <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-6">
-        <span class="text-purple-800">Save The Date</span>
+        <img id="logoMain" style="margin: auto; transition: filter 0.3s ease;" src="images/logo.png" alt="Logo de Save The Date">
       </h1>
       <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto">
         Creamos invitaciones digitales únicas para bodas, quinceañeras, fiestas y eventos especiales
@@ -101,6 +101,19 @@
 </section>
 
 <style>
+  /* Logo styling for dark mode */
+  .logo-light {
+    transition: filter 0.3s ease;
+  }
+  
+  .logo-dark {
+    display: none;
+  }
+  
+  .dark .logo-light {
+    filter: invert(1) brightness(2);
+  }
+
   @keyframes fadeInDown {
     from {
       opacity: 0;
@@ -251,13 +264,31 @@
         el.classList.add('dark-mode-animated');
       });
     }
+    
+    // Inicializar el logo según el modo actual
+    updateLogo();
   });
+  
+  // Función para actualizar el logo según el modo
+  function updateLogo() {
+    const isDarkMode = document.documentElement.classList.contains('dark');
+    const logo = document.getElementById('logoMain');
+    if (logo) {
+      if (isDarkMode) {
+        logo.style.filter = 'invert(1) brightness(2)';
+      } else {
+        logo.style.filter = 'none';
+      }
+    }
+  }
   
   // Escuchar cambios en el modo oscuro
   const darkModeObserver = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.attributeName === 'class') {
         const isDarkMode = document.documentElement.classList.contains('dark');
+        
+        // Actualizar elementos de fondo
         document.querySelectorAll('.bg-white, .shadow-lg, .shadow-xl').forEach(el => {
           if (isDarkMode) {
             el.classList.add('dark-mode-animated');
@@ -265,6 +296,9 @@
             el.classList.remove('dark-mode-animated');
           }
         });
+        
+        // Actualizar logo
+        updateLogo();
       }
     });
   });
