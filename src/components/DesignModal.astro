@@ -1,0 +1,282 @@
+---
+// Componente Modal para mostrar detalles de diseños
+---
+
+<div id="designModal" class="fixed inset-0 z-50 hidden">
+  <!-- Fondo con blur -->
+  <div class="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm transition-all duration-300"></div>
+  
+  <!-- Contenido del modal -->
+  <div class="relative w-11/12 max-w-5xl mx-auto my-8 bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden transition-all duration-300 transform scale-95 opacity-0" id="modalContent">
+    <!-- Botón de cerrar -->
+    <button id="closeModal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100 transition-colors duration-200">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+    
+    <!-- Contenido principal -->
+    <div class="p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Imagen a la izquierda -->
+      <div class="w-full">
+        <img id="modalImage" src="" alt="Diseño de invitación" class="w-full h-auto object-cover rounded-lg shadow-md">
+      </div>
+      
+      <!-- Descripción a la derecha -->
+      <div class="space-y-4">
+        <h2 id="modalTitle" class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-100"></h2>
+        <p id="modalDescription" class="text-gray-600 dark:text-gray-300 leading-relaxed"></p>
+      </div>
+    </div>
+    
+    <!-- Tecnologías usadas -->
+    <div class="px-6 md:px-8 py-4 border-t border-gray-200 dark:border-gray-700">
+      <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-3">Tecnologías y características</h3>
+      <div id="modalTechnologies" class="flex flex-wrap gap-2"></div>
+    </div>
+    
+    <!-- Cartas personalizables -->
+    <div class="px-6 md:px-8 py-6 border-t border-gray-200 dark:border-gray-700">
+      <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Personaliza tu invitación</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <!-- Carta 1 -->
+        <div class="card-template bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden transition-all duration-300">
+          <div class="h-24 bg-purple-500 card-color"></div>
+          <div class="p-4">
+            <h4 class="font-semibold text-gray-800 dark:text-gray-100">Estilo Clásico</h4>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <button class="w-6 h-6 rounded-full bg-purple-500 hover:ring-2 ring-offset-2 ring-purple-500 transition" data-color="bg-purple-500" data-card="0"></button>
+              <button class="w-6 h-6 rounded-full bg-blue-500 hover:ring-2 ring-offset-2 ring-blue-500 transition" data-color="bg-blue-500" data-card="0"></button>
+              <button class="w-6 h-6 rounded-full bg-pink-500 hover:ring-2 ring-offset-2 ring-pink-500 transition" data-color="bg-pink-500" data-card="0"></button>
+              <button class="w-6 h-6 rounded-full bg-green-500 hover:ring-2 ring-offset-2 ring-green-500 transition" data-color="bg-green-500" data-card="0"></button>
+              <button class="w-6 h-6 rounded-full bg-yellow-500 hover:ring-2 ring-offset-2 ring-yellow-500 transition" data-color="bg-yellow-500" data-card="0"></button>
+              <button class="w-6 h-6 rounded-full bg-red-500 hover:ring-2 ring-offset-2 ring-red-500 transition" data-color="bg-red-500" data-card="0"></button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Carta 2 -->
+        <div class="card-template bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden transition-all duration-300">
+          <div class="h-24 bg-blue-500 card-color"></div>
+          <div class="p-4">
+            <h4 class="font-semibold text-gray-800 dark:text-gray-100">Estilo Moderno</h4>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <button class="w-6 h-6 rounded-full bg-purple-500 hover:ring-2 ring-offset-2 ring-purple-500 transition" data-color="bg-purple-500" data-card="1"></button>
+              <button class="w-6 h-6 rounded-full bg-blue-500 hover:ring-2 ring-offset-2 ring-blue-500 transition" data-color="bg-blue-500" data-card="1"></button>
+              <button class="w-6 h-6 rounded-full bg-pink-500 hover:ring-2 ring-offset-2 ring-pink-500 transition" data-color="bg-pink-500" data-card="1"></button>
+              <button class="w-6 h-6 rounded-full bg-green-500 hover:ring-2 ring-offset-2 ring-green-500 transition" data-color="bg-green-500" data-card="1"></button>
+              <button class="w-6 h-6 rounded-full bg-yellow-500 hover:ring-2 ring-offset-2 ring-yellow-500 transition" data-color="bg-yellow-500" data-card="1"></button>
+              <button class="w-6 h-6 rounded-full bg-red-500 hover:ring-2 ring-offset-2 ring-red-500 transition" data-color="bg-red-500" data-card="1"></button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Carta 3 -->
+        <div class="card-template bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden transition-all duration-300">
+          <div class="h-24 bg-pink-500 card-color"></div>
+          <div class="p-4">
+            <h4 class="font-semibold text-gray-800 dark:text-gray-100">Estilo Romántico</h4>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <button class="w-6 h-6 rounded-full bg-purple-500 hover:ring-2 ring-offset-2 ring-purple-500 transition" data-color="bg-purple-500" data-card="2"></button>
+              <button class="w-6 h-6 rounded-full bg-blue-500 hover:ring-2 ring-offset-2 ring-blue-500 transition" data-color="bg-blue-500" data-card="2"></button>
+              <button class="w-6 h-6 rounded-full bg-pink-500 hover:ring-2 ring-offset-2 ring-pink-500 transition" data-color="bg-pink-500" data-card="2"></button>
+              <button class="w-6 h-6 rounded-full bg-green-500 hover:ring-2 ring-offset-2 ring-green-500 transition" data-color="bg-green-500" data-card="2"></button>
+              <button class="w-6 h-6 rounded-full bg-yellow-500 hover:ring-2 ring-offset-2 ring-yellow-500 transition" data-color="bg-yellow-500" data-card="2"></button>
+              <button class="w-6 h-6 rounded-full bg-red-500 hover:ring-2 ring-offset-2 ring-red-500 transition" data-color="bg-red-500" data-card="2"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Función global para abrir el modal desde cualquier componente
+  window.openDesignModal = function(designType) {
+    const modal = document.getElementById('designModal');
+    const modalContent = document.getElementById('modalContent');
+    const design = designData[designType];
+    
+    if (!design) return;
+    
+    // Establecer datos en el modal
+    document.getElementById('modalImage').src = design.image;
+    document.getElementById('modalImage').alt = design.title;
+    document.getElementById('modalTitle').textContent = design.title;
+    document.getElementById('modalDescription').textContent = design.description;
+    
+    // Limpiar y añadir tecnologías
+    const techContainer = document.getElementById('modalTechnologies');
+    techContainer.innerHTML = '';
+    design.technologies.forEach(tech => {
+      const techBadge = document.createElement('span');
+      techBadge.className = `${tech.color} px-3 py-1 rounded-full text-sm font-medium`;
+      techBadge.textContent = tech.name;
+      techContainer.appendChild(techBadge);
+    });
+    
+    // Mostrar el modal con animación
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+      modalContent.classList.remove('scale-95', 'opacity-0');
+      modalContent.classList.add('scale-100', 'opacity-100');
+    }, 10);
+    
+    // Prevenir scroll en el body
+    document.body.style.overflow = 'hidden';
+  };
+  
+  // Datos de ejemplo para los diseños
+  const designData = {
+    wedding: {
+      title: "Invitaciones de Boda",
+      description: "Diseño elegante y romántico para una boda en la playa. Los clientes querían un estilo minimalista con tonos azules y dorados que reflejara la atmósfera costera pero manteniendo la elegancia de una ceremonia formal.",
+      image: "/images/nuestraboda.png",
+      technologies: [
+        { name: "Animaciones personalizadas", color: "bg-purple-100 text-purple-800" },
+        { name: "Música de fondo", color: "bg-blue-100 text-blue-800" },
+        { name: "Confirmación digital", color: "bg-green-100 text-green-800" },
+        { name: "Galería de fotos", color: "bg-pink-100 text-pink-800" },
+        { name: "Mapa interactivo", color: "bg-yellow-100 text-yellow-800" }
+      ]
+    },
+    birthday: {
+      title: "Invitaciones de Cumpleaños",
+      description: "Diseño colorido y divertido para una fiesta de cumpleaños infantil con temática de superhéroes. Los padres querían una invitación interactiva que entusiasmara a los niños y facilitara la confirmación de asistencia.",
+      image: "/images/birthday-invitation.jpg",
+      technologies: [
+        { name: "Animaciones interactivas", color: "bg-purple-100 text-purple-800" },
+        { name: "Sonidos temáticos", color: "bg-blue-100 text-blue-800" },
+        { name: "Contador regresivo", color: "bg-green-100 text-green-800" },
+        { name: "Juego integrado", color: "bg-pink-100 text-pink-800" }
+      ]
+    },
+    corporate: {
+      title: "Eventos Corporativos",
+      description: "Diseño profesional y sofisticado para el lanzamiento de un nuevo producto tecnológico. La empresa buscaba transmitir innovación y exclusividad mientras proporcionaba toda la información necesaria de forma clara y accesible.",
+      image: "/images/corporate-invitation.jpg",
+      technologies: [
+        { name: "Registro automático", color: "bg-purple-100 text-purple-800" },
+        { name: "Agenda interactiva", color: "bg-blue-100 text-blue-800" },
+        { name: "Información de ponentes", color: "bg-green-100 text-green-800" },
+        { name: "Integración con calendario", color: "bg-pink-100 text-pink-800" },
+        { name: "Código QR personalizado", color: "bg-yellow-100 text-yellow-800" }
+      ]
+    },
+    sweet15: {
+      title: "Quinceañeras",
+      description: "Diseño elegante y juvenil para una celebración de quinceañera con temática de fantasía. La familia quería una invitación que reflejara la personalidad de la quinceañera mientras mantenía las tradiciones importantes del evento.",
+      image: "/images/nuestraboda.png", // Imagen temporal
+      technologies: [
+        { name: "Animaciones personalizadas", color: "bg-purple-100 text-purple-800" },
+        { name: "Música seleccionada", color: "bg-blue-100 text-blue-800" },
+        { name: "Galería de recuerdos", color: "bg-green-100 text-green-800" },
+        { name: "Confirmación digital", color: "bg-pink-100 text-pink-800" },
+        { name: "Mapa del evento", color: "bg-yellow-100 text-yellow-800" }
+      ]
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('designModal');
+    const modalContent = document.getElementById('modalContent');
+    const closeModalBtn = document.getElementById('closeModal');
+    
+    // Funcionalidad para cambiar colores de las tarjetas
+    const colorButtons = document.querySelectorAll('[data-color]');
+    colorButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const color = button.getAttribute('data-color');
+        const cardIndex = button.getAttribute('data-card');
+        const cardElements = document.querySelectorAll('.card-color');
+        
+        if (cardElements[cardIndex]) {
+          // Eliminar todas las clases de color anteriores
+          const colorClasses = ['bg-purple-500', 'bg-blue-500', 'bg-pink-500', 'bg-green-500', 'bg-yellow-500', 'bg-red-500'];
+          colorClasses.forEach(cls => {
+            cardElements[cardIndex].classList.remove(cls);
+          });
+          
+          // Añadir la nueva clase de color
+          cardElements[cardIndex].classList.add(color);
+          
+          // Efecto visual de selección
+          const cardButtons = document.querySelectorAll(`[data-card="${cardIndex}"]`);
+          cardButtons.forEach(btn => {
+            btn.classList.remove('ring-2');
+          });
+          button.classList.add('ring-2');
+        }
+      });
+    });
+    
+    // Función para cerrar el modal
+    function closeModal() {
+      modalContent.classList.remove('scale-100', 'opacity-100');
+      modalContent.classList.add('scale-95', 'opacity-0');
+      
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        // Restaurar scroll
+        document.body.style.overflow = '';
+      }, 300);
+    }
+    
+    // Evento para cerrar el modal
+    closeModalBtn.addEventListener('click', closeModal);
+    
+    // Cerrar modal al hacer clic fuera del contenido
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+    
+    // Cerrar modal con la tecla Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+    
+    // Añadir eventos a los botones de color para personalizar las cartas
+    document.querySelectorAll('[data-color]').forEach(button => {
+      button.addEventListener('click', () => {
+        const color = button.getAttribute('data-color');
+        const cardIndex = button.getAttribute('data-card');
+        const cards = document.querySelectorAll('.card-template');
+        const colorDiv = cards[cardIndex].querySelector('.card-color');
+        
+        // Remover todas las clases de color y añadir la nueva
+        colorDiv.className = 'h-24 card-color ' + color;
+      });
+    });
+    
+    // La función openDesignModal ya está definida globalmente al inicio del script
+  });
+</script>
+
+<style>
+  /* Animaciones para el modal */
+  #modalContent {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  }
+  
+  /* Estilos para modo oscuro */
+  html.dark #designModal .bg-white {
+    background-color: rgb(35, 35, 45) !important;
+  }
+  
+  html.dark #designModal .text-gray-800 {
+    color: rgb(220, 220, 235) !important;
+  }
+  
+  html.dark #designModal .text-gray-600 {
+    color: rgb(200, 200, 220) !important;
+  }
+  
+  html.dark #designModal .border-gray-200 {
+    border-color: rgb(45, 45, 55) !important;
+  }
+</style>
