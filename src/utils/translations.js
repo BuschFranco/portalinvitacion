@@ -223,9 +223,6 @@ export function initTranslations() {
     // Verificar si hay una preferencia de idioma guardada
     let currentLang = localStorage.getItem('language') || 'es';
     
-    // Aplicar el idioma actual al cargar la página
-    updateTexts(currentLang);
-    
     return currentLang;
 }
 
