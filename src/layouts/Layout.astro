@@ -12,7 +12,14 @@
 		<meta name="description" content="Creamos invitaciones digitales personalizadas para bodas, quinceañeras, cumpleaños y eventos corporativos. Diseños únicos, entrega rápida y eco-friendly.">
 	</head>
 	<body id="body">
-		<slot />
+		<!-- Preloader -->
+		<div id="preloader" class="fixed inset-0 z-50 bg-white transition-opacity duration-500">
+		</div>
+		
+		<!-- Contenido principal -->
+		<div id="mainContent" class="opacity-0 transition-opacity duration-1000">
+			<slot />
+		</div>
 	</body>
 </html>
 
@@ -120,5 +127,83 @@
 	html.dark .shadow-xl {
 		background-color: rgb(35, 35, 45) !important;
 		border-color: rgb(45, 45, 55) !important;
+	}
+</style>
+
+<script>
+	// Preloader y animaciones de scroll
+	document.addEventListener('DOMContentLoaded', function() {
+		const preloader = document.getElementById('preloader');
+		const mainContent = document.getElementById('mainContent');
+		
+		// Ocultar preloader después de que la página esté lista
+		setTimeout(() => {
+			preloader.style.opacity = '0';
+			setTimeout(() => {
+				preloader.style.display = 'none';
+				mainContent.style.opacity = '1';
+				// Iniciar animaciones de scroll
+				initScrollAnimations();
+			}, 500);
+		}, 800);
+	});
+	
+	// Función para inicializar animaciones de scroll
+	function initScrollAnimations() {
+		const observerOptions = {
+			threshold: 0.1,
+			rootMargin: '0px 0px -50px 0px'
+		};
+		
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('animate-in');
+				}
+			});
+		}, observerOptions);
+		
+		// Observar todos los elementos con clase scroll-reveal
+		document.querySelectorAll('.scroll-reveal').forEach(el => {
+			observer.observe(el);
+		});
+	}
+</script>
+
+<style is:global>
+	/* Animaciones de scroll reveal */
+	.scroll-reveal {
+		opacity: 0;
+		transform: translateY(30px);
+		transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+	}
+	
+	.scroll-reveal.animate-in {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	
+	/* Variaciones de animación */
+	.scroll-reveal.fade-left {
+		transform: translateX(-30px);
+	}
+	
+	.scroll-reveal.fade-right {
+		transform: translateX(30px);
+	}
+	
+	.scroll-reveal.fade-up {
+		transform: translateY(30px);
+	}
+	
+	.scroll-reveal.scale {
+		transform: scale(0.9);
+	}
+	
+	.scroll-reveal.animate-in.fade-left,
+	.scroll-reveal.animate-in.fade-right,
+	.scroll-reveal.animate-in.fade-up,
+	.scroll-reveal.animate-in.scale {
+		transform: translateX(0) translateY(0) scale(1);
 	}
 </style>
