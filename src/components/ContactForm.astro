@@ -1,0 +1,123 @@
+---
+// ContactForm.astro
+---
+
+<section class="bg-gradient-to-br from-purple-50 to-pink-50 py-16 px-4">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-gray-800 mb-4">¿Tienes una idea en mente?</h2>
+      <p class="text-xl text-gray-600">Cuéntanos sobre tu proyecto y te ayudaremos a hacerlo realidad</p>
+    </div>
+    
+    <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+      <form id="contactForm" class="space-y-6">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label for="nombre" class="block text-sm font-semibold text-gray-700 mb-2">
+              Nombre *
+            </label>
+            <input 
+              type="text" 
+              id="nombre" 
+              name="nombre" 
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+              placeholder="Tu nombre completo"
+            />
+          </div>
+          
+          <div>
+            <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
+              Email *
+            </label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+              placeholder="tu@email.com"
+            />
+          </div>
+        </div>
+        
+        <div>
+          <label for="consulta" class="block text-sm font-semibold text-gray-700 mb-2">
+            Consulta/Idea *
+          </label>
+          <textarea 
+            id="consulta" 
+            name="consulta" 
+            required
+            rows="5"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 resize-vertical"
+            placeholder="Cuéntanos sobre tu proyecto, evento o idea..."
+          ></textarea>
+        </div>
+        
+        <div class="text-center">
+          <button 
+            type="submit" 
+            class="bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-3 px-8 rounded-lg hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
+          >
+            Enviar Consulta
+          </button>
+        </div>
+        
+        <div id="formMessage" class="hidden text-center p-4 rounded-lg"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    const data = {
+      nombre: formData.get('nombre'),
+      email: formData.get('email'),
+      consulta: formData.get('consulta')
+    };
+    
+    const messageDiv = document.getElementById('formMessage');
+    const submitButton = e.target.querySelector('button[type="submit"]');
+    
+    // Mostrar estado de carga
+    submitButton.disabled = true;
+    submitButton.textContent = 'Enviando...';
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok) {
+        messageDiv.className = 'text-center p-4 rounded-lg bg-green-100 text-green-800 border border-green-200';
+        messageDiv.textContent = '¡Mensaje enviado correctamente! Te contactaremos pronto.';
+        e.target.reset();
+      } else {
+        throw new Error(result.error || 'Error al enviar el mensaje');
+      }
+    } catch (error) {
+      messageDiv.className = 'text-center p-4 rounded-lg bg-red-100 text-red-800 border border-red-200';
+      messageDiv.textContent = 'Error al enviar el mensaje. Por favor, inténtalo de nuevo.';
+    } finally {
+      messageDiv.classList.remove('hidden');
+      submitButton.disabled = false;
+      submitButton.textContent = 'Enviar Consulta';
+      
+      // Ocultar mensaje después de 5 segundos
+      setTimeout(() => {
+        messageDiv.classList.add('hidden');
+      }, 5000);
+    }
+  });
+</script>
