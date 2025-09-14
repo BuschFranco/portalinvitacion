@@ -228,7 +228,7 @@
     
     // Cerrar modal al hacer clic fuera del contenido
     modal.addEventListener('click', (e) => {
-      if (e.target === modal || !modalContent.contains(e.target)) {
+      if (e.target === modal) {
         closeModal();
       }
     });
