@@ -1,4 +1,12 @@
 import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+
+// Cargar variables de entorno
+dotenv.config();
+
+// Debug: Verificar variables de entorno (comentado para producción)
+// console.log('EMAIL_USER:', process.env.EMAIL_USER);
+// console.log('EMAIL_PASS:', process.env.EMAIL_PASS ? '***configurado***' : 'NO CONFIGURADO');
 
 export async function POST({ request }) {
   try {
@@ -23,11 +31,17 @@ export async function POST({ request }) {
     
     // Configurar transporter de nodemailer
     // Nota: Necesitarás configurar las variables de entorno para el email
-    const transporter = nodemailer.createTransporter({
-      service: 'gmail', // o tu proveedor de email preferido
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false, // true para 465, false para otros puertos
       auth: {
-        user: process.env.EMAIL_USER || 'tu-email@gmail.com', // Email desde el cual enviar
-        pass: process.env.EMAIL_PASS || 'tu-app-password' // App password de Gmail
+        user: process.env.EMAIL_USER || 'tu-email@gmail.com',
+        pass: process.env.EMAIL_PASS?.replace(/\s/g, '') || 'tu-app-password' // Remover espacios de la App Password
+      },
+      tls: {
+        rejectUnauthorized: false
       }
     });
     
@@ -38,7 +52,7 @@ export async function POST({ request }) {
       subject: `Nueva consulta de ${nombre} - Portal Invitación`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
-          <h2 style="color: #8B5CF6; text-align: center; margin-bottom: 30px;">Nueva Consulta - Portal Invitación</h2>
+          <h2 style="color: #8B5CF6; text-align: center; margin-bottom: 30px;">Nueva Consulta - Save The Date</h2>
           
           <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
             <h3 style="color: #333; margin-top: 0;">Información del Cliente:</h3>

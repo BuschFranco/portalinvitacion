@@ -9,7 +9,9 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/node": "^9.4.3",
     "astro": "^5.13.2",
+    "dotenv": "^17.2.2",
     "nodemailer": "^7.0.6"
   }
 }
