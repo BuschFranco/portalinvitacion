@@ -49,7 +49,7 @@ export async function POST({ request }) {
     const mailOptions = {
       from: process.env.EMAIL_USER || 'tu-email@gmail.com',
       to: 'francobusch130@gmail.com',
-      subject: `Nueva consulta de ${nombre} - Portal Invitación`,
+      subject: `Nueva consulta de ${nombre} - Save The Date`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
           <h2 style="color: #8B5CF6; text-align: center; margin-bottom: 30px;">Nueva Consulta - Save The Date</h2>
@@ -66,7 +66,7 @@ export async function POST({ request }) {
           </div>
           
           <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
-            <p style="color: #666; font-size: 14px;">Este mensaje fue enviado desde el formulario de contacto de Portal Invitación</p>
+            <p style="color: #666; font-size: 14px;">Este mensaje fue enviado desde el formulario de contacto de Save The Date</p>
             <p style="color: #666; font-size: 14px;">Fecha: ${new Date().toLocaleString('es-ES')}</p>
           </div>
         </div>
