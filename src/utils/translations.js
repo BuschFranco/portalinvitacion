@@ -70,12 +70,12 @@ export const translations = {
         weddingCardText: "Diseños elegantes y románticos para hacer de tu día especial un momento inolvidable. Incluye características interactivas y personalizables.",
         weddingCardLink: "Ver más →",
         
-        birthdayCardTitle: "Invitaciones de Cumpleaños",
-        birthdayCardText: "Celebra tu día especial con diseños divertidos y coloridos. Perfectos para todas las edades y estilos de celebración.",
+        birthdayCardTitle: "Invitaciones de Fiestas",
+        birthdayCardText: "Diseños mágicos y festivos para celebraciones especiales. Perfectos para fiestas temáticas, celebraciones navideñas y eventos únicos.",
         birthdayCardLink: "Ver más →",
         
-        corporateCardTitle: "Eventos Corporativos",
-        corporateCardText: "Invitaciones profesionales y elegantes para eventos empresariales, conferencias y lanzamientos de productos.",
+        corporateCardTitle: "Invitaciones de Cumpleaños",
+        corporateCardText: "Invitaciones llamativas y coloridas para celebrar otro año. Con animaciones y música personalizadas, perfectas para cumpleaños de todas las edades.",
         corporateCardLink: "Ver más →",
     
     // Hero section
@@ -189,12 +189,12 @@ export const translations = {
         weddingCardText: "Elegant and romantic designs to make your special day an unforgettable moment. Includes interactive and customizable features.",
         weddingCardLink: "See more →",
         
-        birthdayCardTitle: "Birthday Invitations",
-        birthdayCardText: "Celebrate your special day with fun and colorful designs. Perfect for all ages and celebration styles.",
+        birthdayCardTitle: "Party Invitations",
+        birthdayCardText: "Magical and festive designs for special celebrations. Perfect for themed parties, Christmas celebrations and unique events.",
         birthdayCardLink: "See more →",
         
-        corporateCardTitle: "Corporate Events",
-        corporateCardText: "Professional and elegant invitations for business events, conferences and product launches.",
+        corporateCardTitle: "Birthday Invitations",
+        corporateCardText: "Eye-catching and colorful invitations to celebrate another year of life. With personalized animations and music, perfect for birthdays of all ages.",
         corporateCardLink: "See more →",
     
     // Hero section
@@ -307,12 +307,12 @@ export const translations = {
         weddingCardText: "Designs elegantes e românticos para tornar seu dia especial um momento inesquecível. Inclui recursos interativos e personalizáveis.",
         weddingCardLink: "Ver mais →",
         
-        birthdayCardTitle: "Convites de Aniversário",
-        birthdayCardText: "Celebre seu dia especial com designs divertidos e coloridos. Perfeitos para todas as idades e estilos de celebração.",
+        birthdayCardTitle: "Convites de Festas",
+        birthdayCardText: "Designs mágicos e festivos para celebrações especiais. Perfeitos para festas temáticas, celebrações natalinas e eventos únicos.",
         birthdayCardLink: "Ver mais →",
         
-        corporateCardTitle: "Eventos Corporativos",
-        corporateCardText: "Convites profissionais e elegantes para eventos empresariais, conferências e lançamentos de produtos.",
+        corporateCardTitle: "Convites de Aniversário",
+        corporateCardText: "Convites chamativos e coloridos para celebrar mais um ano de vida. Com animações e música personalizadas, perfeitos para aniversários de todas as idades.",
         corporateCardLink: "Ver mais →",
     
     // Hero section
