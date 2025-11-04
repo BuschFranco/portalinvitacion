@@ -10,6 +10,9 @@
 <link rel="icon" type="image/png" href="images/favicon.png" />
 		<title>Save The Date | Diseños Únicos para Eventos</title>
 		<meta name="description" content="Creamos invitaciones digitales personalizadas para bodas, quinceañeras, cumpleaños y eventos corporativos. Diseños únicos, entrega rápida y eco-friendly.">
+        <!-- Fuentes elegantes/festivas -->
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 	</head>
 	<body id="body">
 		<!-- Preloader -->
@@ -46,7 +49,10 @@
 		width: 100%;
 		height: 100%;
 		transition: background-color 0.5s ease, color 0.5s ease;
-	} 
+	}
+    /* Scroll suave y espacio por header fijo */
+    html { scroll-behavior: smooth; }
+    #mainContent { padding-top: 80px; }
 	html.dark,
 	html.dark body {
         background-color: rgb(18, 18, 28) !important;
@@ -170,8 +176,31 @@
 	}
 </script>
 
+<!-- Segundo bloque global: variables pastel y overrides de modo claro -->
 <style is:global>
-	/* Animaciones de scroll reveal */
+    :root {
+        --pastel-blue: #cfe9ff;     /* celeste */
+        --pastel-pink: #ffd6e7;     /* rosa */
+        --pastel-yellow: #fff3b0;   /* amarillo suave */
+        --pastel-violet: #e6d2ff;   /* violeta suave */
+        --pastel-green: #c8f5d2;    /* verde pastel (contacto) */
+        --pastel-text: #374151;     /* gris para textos en claro */
+    }
+
+    /* Texto base en modo claro */
+    html:not(.dark) body {
+        color: var(--pastel-text);
+    }
+
+    /* Gradiente pastel para secciones que usan blue→green en claro (Hero) */
+    html:not(.dark) .bg-gradient-to-br.from-blue-50.to-green-50 {
+        background: linear-gradient(to bottom right, var(--pastel-blue), var(--pastel-pink)) !important;
+    }
+
+    /* Contacto en verde pastel (claro) */
+    html:not(.dark) #contact {
+        background: linear-gradient(to bottom right, var(--pastel-green), #fafff7) !important;
+    }
 	.scroll-reveal {
 		opacity: 0;
 		transform: translateY(30px);

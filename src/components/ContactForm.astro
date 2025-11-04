@@ -71,6 +71,38 @@
   </div>
 </section>
 
+<style>
+  /* Contacto VERDE pastel en modo claro */
+  html:not(.dark) #contact {
+    background: linear-gradient(to bottom right, var(--pastel-green), #fafff7);
+  }
+
+  /* Contenedor del formulario */
+  html:not(.dark) #contact .bg-white {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    border-radius: 16px;
+  }
+
+  /* Focus verde para inputs en modo claro */
+  html:not(.dark) #contact input:focus,
+  html:not(.dark) #contact textarea:focus {
+    outline: none;
+    border-color: #9be7c9;
+    box-shadow: 0 0 0 3px rgba(155, 231, 201, 0.45);
+  }
+
+  /* Botón enviar verde pastel en modo claro (override del gradiente violeta/rosa) */
+  html:not(.dark) #contact #contact-submit-btn {
+    background: linear-gradient(90deg, #bdf3cf, #8ee6b7);
+    color: #114b35;
+  }
+
+  html:not(.dark) #contact #contact-submit-btn:hover {
+    background: linear-gradient(90deg, #c8f5d2, #9be7c9);
+    transform: scale(1.05);
+  }
+</style>
+
 <script>
   import { translations } from '../utils/translations.js';
   
